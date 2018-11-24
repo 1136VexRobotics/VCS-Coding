@@ -1,0 +1,373 @@
+#include "robot-config.h"
+
+
+/*
+robot-config.h
+
+vex::brain Brain;
+vex::motor FR = vex::motor(vex::PORT16);
+vex::motor MR = vex::motor(vex::PORT17);
+vex::motor RR = vex::motor(vex::PORT15);
+vex::motor FL = vex::motor(vex::PORT18);
+vex::motor ML = vex::motor(vex::PORT20);
+vex::motor RL = vex::motor(vex::PORT19);
+vex::controller Controller = vex::controller();
+vex::motor Arm = vex::motor(vex::PORT14);
+vex::gyro Gyro = vex::gyro(Brain.ThreeWirePort.A);
+vex::motor SHOT = vex::motor(vex::PORT12);
+*/
+
+
+
+
+
+int turnspeed = 25;
+int forwardspeed = 50;
+
+
+int armspeed = 190;
+
+
+float armup = 1.3;
+float armup2 = 0.5;
+int armover = 0;
+
+
+float fwd_1 = 3.6;
+float fwd_2 = 3.2;
+int fwd_3 = 2;
+float fwd_4 = 0.8;
+
+    
+float bwd_1 = 1.7;
+float bwd_2 = 1.7;
+
+
+float left_90 = 0.65;
+float right_90 = 0.65;
+
+float right_180 = 1.2;
+
+
+
+
+
+
+void reset()
+{
+    FR.resetRotation();
+    MR.resetRotation();
+    RR.resetRotation();
+    FL.resetRotation();
+    ML.resetRotation();
+    RL.resetRotation();
+}
+
+
+void motor_stop()
+{
+    FR.stop();
+    MR.stop();
+    RR.stop();
+    FL.stop();
+    ML.stop();
+    RL.stop();
+}
+
+
+void drive_fwd_1()
+{
+    Brain.Screen.print("FORWARD ");
+    Brain.Screen.print(fwd_1);
+    Brain.Screen.print(" ROTATIONS");
+    Brain.Screen.newLine();
+    FR.startRotateTo(fwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    MR.startRotateTo(fwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RR.startRotateTo(fwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    FL.startRotateTo(-fwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    ML.startRotateTo(-fwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RL.startRotateTo(-fwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    while (FR.isSpinning() || FL.isSpinning())
+    {}
+    reset();
+}
+
+
+void drive_bwd_1()
+{
+    Brain.Screen.print("BACKWARD ");
+    Brain.Screen.print(bwd_1);
+    Brain.Screen.print(" ROTATIONS");
+    Brain.Screen.newLine();
+    FR.startRotateTo(-bwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    MR.startRotateTo(-bwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RR.startRotateTo(-bwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    FL.startRotateTo(bwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    ML.startRotateTo(bwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RL.startRotateTo(bwd_1,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    while (FR.isSpinning() || FL.isSpinning())
+    {}
+    reset();
+}
+
+
+void turn_left_90()
+{
+    Brain.Screen.print("LEFT ");
+    Brain.Screen.print(left_90);
+    Brain.Screen.print(" ROTATIONS");
+    Brain.Screen.newLine();
+    FR.startRotateTo(-left_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    MR.startRotateTo(-left_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RR.startRotateTo(-left_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    FL.startRotateTo(-left_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    ML.startRotateTo(-left_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RL.startRotateTo(-left_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    while (FR.isSpinning() || FL.isSpinning())
+    {}
+    reset();
+}
+
+
+void drive_fwd_2()
+{
+    Brain.Screen.print("FORWARD ");
+    Brain.Screen.print(fwd_2);
+    Brain.Screen.print(" ROTATIONS");
+    Brain.Screen.newLine();
+    FR.startRotateTo(fwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    MR.startRotateTo(fwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RR.startRotateTo(fwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    FL.startRotateTo(-fwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    ML.startRotateTo(-fwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RL.startRotateTo(-fwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    while (FR.isSpinning() || FL.isSpinning())
+    {}
+    reset();
+}
+
+
+void turn_right_90()
+{
+    Brain.Screen.print("RIGHT ");
+    Brain.Screen.print(right_90);
+    Brain.Screen.print(" ROTATIONS");
+    Brain.Screen.newLine();
+    FR.startRotateTo(right_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    MR.startRotateTo(right_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RR.startRotateTo(right_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    FL.startRotateTo(right_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    ML.startRotateTo(right_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RL.startRotateTo(right_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    while (FR.isSpinning() || FL.isSpinning())
+    {}
+    reset();
+}
+
+
+void drive_fwd_3()
+{
+    Brain.Screen.print("FORWARD ");
+    Brain.Screen.print(fwd_3);
+    Brain.Screen.print(" ROTATIONS");
+    Brain.Screen.newLine();
+    FR.startRotateTo(fwd_3,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    MR.startRotateTo(fwd_3,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RR.startRotateTo(fwd_3,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    FL.startRotateTo(-fwd_3,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    ML.startRotateTo(-fwd_3,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RL.startRotateTo(-fwd_3,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    while (FR.isSpinning() || FL.isSpinning())
+    {}
+    reset();
+}
+
+
+void drive_bwd_2()
+{
+    Brain.Screen.print("BACKWARD ");
+    Brain.Screen.print(bwd_2);
+    Brain.Screen.print(" ROTATIONS");
+    Brain.Screen.newLine();
+    FR.startRotateTo(-bwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    MR.startRotateTo(-bwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RR.startRotateTo(-bwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    FL.startRotateTo(bwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    ML.startRotateTo(bwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RL.startRotateTo(bwd_2,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    while (FR.isSpinning() || FL.isSpinning())
+    {}
+    reset();
+}
+
+
+void turn_right_180()
+{
+    Brain.Screen.print("RIGHT ");
+    Brain.Screen.print(right_180);
+    Brain.Screen.print(" ROTATIONS");
+    Brain.Screen.newLine();
+    FR.startRotateTo(-right_180,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    MR.startRotateTo(-right_180,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RR.startRotateTo(-right_180,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    FL.startRotateTo(-right_180,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    ML.startRotateTo(-right_180,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RL.startRotateTo(-right_180,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    while (FR.isSpinning() || FL.isSpinning())
+    {}
+    reset();
+}
+
+
+void drive_fwd_4()
+{
+    Brain.Screen.print("FORWARD ");
+    Brain.Screen.print(fwd_4);
+    Brain.Screen.print(" ROTATIONS");
+    Brain.Screen.newLine();
+    FR.startRotateTo(fwd_4,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    MR.startRotateTo(fwd_4,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RR.startRotateTo(fwd_4,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    FL.startRotateTo(-fwd_4,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    ML.startRotateTo(-fwd_4,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    RL.startRotateTo(-fwd_4,vex::rotationUnits::rev,forwardspeed,vex::velocityUnits::pct);
+    while (FR.isSpinning() || FL.isSpinning())
+    {}
+    reset();
+}
+
+
+
+
+
+
+void arm_up_1()
+{
+    Brain.Screen.print("ARM UP ");
+    Brain.Screen.print(armup);
+    Brain.Screen.print(".");
+    Brain.Screen.newLine();
+    Arm.startRotateTo(armup,vex::rotationUnits::rev,armspeed,vex::velocityUnits::pct);
+    Arm.stop(vex::brakeType::hold);
+}
+
+void arm_up_2()
+{
+    Brain.Screen.print("ARM UP ");
+    Brain.Screen.print(armup2);
+    Brain.Screen.print(".");
+    Brain.Screen.newLine();
+    Arm.startRotateTo(armup2,vex::rotationUnits::rev,armspeed,vex::velocityUnits::pct);
+    Arm.stop(vex::brakeType::hold);
+}
+
+
+void arm_over()
+{
+    Brain.Screen.print("ARM OVER ");
+    Brain.Screen.print(armover);
+    Brain.Screen.print(".");
+    Brain.Screen.newLine();
+    Arm.startRotateTo(armover,vex::rotationUnits::rev,armspeed,vex::velocityUnits::pct);
+    Arm.stop(vex::brakeType::hold);
+}
+
+
+void autonomous()
+{
+    arm_up_2();
+    drive_fwd_1();
+    vex::task::sleep(1000);
+    drive_bwd_1();
+    arm_up_1();
+    vex::task::sleep(1000); 
+    turn_left_90();
+    vex::task::sleep(1000);
+    drive_fwd_2();
+    arm_over();
+    vex::task::sleep(1000);
+    turn_right_90();
+    arm_up_2();
+    vex::task::sleep(1000);
+    drive_fwd_3();
+    vex::task::sleep(1000);
+    drive_bwd_2();
+    vex::task::sleep(1000);
+    turn_right_180();
+    arm_up_1();
+    vex::task::sleep(1000);
+    drive_fwd_4();
+    
+    
+    
+    
+}
+
+
+
+int main() 
+{
+    
+    while(true)
+    {
+    FR.spin(vex::directionType::fwd, Controller.Axis3.value(), vex::velocityUnits::pct);
+    MR.spin(vex::directionType::fwd, Controller.Axis3.value(), vex::velocityUnits::pct);
+    RR.spin(vex::directionType::fwd, Controller.Axis3.value(), vex::velocityUnits::pct );
+    
+    FL.spin(vex::directionType::rev, Controller.Axis2.value(), vex::velocityUnits::pct);
+    ML.spin(vex::directionType::rev, Controller.Axis2.value(), vex::velocityUnits::pct);
+    RL.spin(vex::directionType::rev, Controller.Axis2.value(), vex::velocityUnits::pct);
+    
+    
+
+        
+   
+        
+
+           
+        
+            
+if(Controller.ButtonR1.pressing())
+    {
+        Arm.startRotateTo(-2.6,vex::rotationUnits::rev,100,vex::velocityUnits::pct);
+    }
+        else if(Controller.ButtonR2.pressing())
+            {
+                Arm.startRotateTo(0,vex::rotationUnits::rev,100,vex::velocityUnits::pct);
+            }
+        else if(Controller.ButtonL1.pressing())
+            {
+                Arm.startRotateTo(-1.4,vex::rotationUnits::rev,100,vex::velocityUnits::pct);
+            }
+                else
+                {
+                    Arm.stop(vex::brakeType::brake);  
+                }
+        
+        
+        
+        
+        if(Controller.ButtonL2.pressing())
+        {
+            SHOT.setVelocity(200,vex::velocityUnits::rpm);
+            SHOT.startRotateTo(1.01,vex::rotationUnits::rev);
+            vex::task::sleep(1000);
+            SHOT.resetRotation();
+        }
+
+            else
+                {
+                SHOT.stop(vex::brakeType::coast); 
+                }
+
+        
+        if(Controller.ButtonX.pressing())
+        {
+            autonomous();
+        }
+    }
+}
+
+    
+
+
