@@ -1,0 +1,120 @@
+#include "robot-config.h"
+
+void reset()
+{
+    Intake.resetRotation();
+}
+
+
+
+
+
+
+
+
+int main() 
+{
+
+    
+    int originX = 10;
+    int originX2 = 10;
+    int originX3 = 370;
+    int originX4 = 370;
+    int width = 100;
+   
+    int originY = 10;
+    int originY2 = 120;
+    int originY3 = 10;
+    int originY4 = 120;
+    int height = 100;
+    
+    int endX = originX + width;
+    int endY = originY + height;
+    
+    int endX2 = originX2 + width;
+    int endY2 = originY2 + height;
+    
+    int endX3 = originX3 + width;
+    int endY3 = originY3 + height;
+    
+    int endX4 = originX4 + width;
+    int endY4 = originY4 + height;
+    
+    Brain.Screen.setFillColor(vex::color::red);
+    Brain.Screen.drawRectangle(originX, originY, width, height);
+    Brain.Screen.drawRectangle(originX2, originY2, width, height);
+    
+    Brain.Screen.setFillColor(vex::color::blue);
+    Brain.Screen.drawRectangle(originX3, originY3, width, height);
+    Brain.Screen.drawRectangle(originX4, originY4, width, height);
+    
+    while(true)
+    {
+        
+        LeftMotor1.spin(vex::directionType::fwd, (Controller.Axis3.value() + Controller.Axis4.value()), vex::velocityUnits::pct); //(Axis3+Axis4)/2
+        RightMotor1.spin(vex::directionType::fwd, (Controller.Axis3.value() - Controller.Axis4.value()), vex::velocityUnits::pct);//(Axis3-Axis4)/2
+        LeftMotor2.spin(vex::directionType::fwd, (Controller.Axis3.value() + Controller.Axis4.value()), vex::velocityUnits::pct); //(Axis3+Axis4)/2
+        RightMotor2.spin(vex::directionType::fwd, (Controller.Axis3.value() - Controller.Axis4.value()), vex::velocityUnits::pct);//(Axis3-Axis4)/2
+        
+        Intake.spin(vex::directionType::fwd, Controller.Axis2.value(), vex::velocityUnits::pct);
+        
+        
+        
+        
+        
+        
+        Brain.Screen.setFillColor(vex::color::black);
+        Brain.Screen.printAt(125, 200, "Battery Capacity: %d%%", Brain.Battery.capacity());
+        
+        if (Brain.Screen.pressing())
+        {
+
+            int X = Brain.Screen.xPosition();//X pos of press
+            int Y = Brain.Screen.yPosition();// Y pos of press
+
+            
+            if ((X >= originX && X <= endX) && (Y >= originY && Y <= endY))
+            {
+                Brain.Screen.printAt(200,20,"Hello");
+            }
+            else
+            {
+                Brain.Screen.printAt(200,20,"      ");
+            }
+            
+            
+            
+            if ((X>= originX2 && X<= endX2) && (Y >= originY2 && Y <= endY2))
+            {
+                Brain.Screen.printAt(200,40, "Goodbye");
+            }
+            else
+            {
+                Brain.Screen.printAt(200,40,"          ");
+            }
+            
+            
+            
+            if ((X>= originX3 && X <=endX3) && (Y >= originY3 && Y<=endY3))
+            {
+                Brain.Screen.printAt(200, 60, "Yes sir");
+            }
+            else 
+            {
+                Brain.Screen.printAt(200,60,"       ");
+            }
+            
+            
+            
+            if ((X>= originX4 && X <=endX4) && (Y >= originY4 && Y<=endY4))
+            {
+                Brain.Screen.printAt(200, 80, "No sir");
+            }
+            else 
+            {
+                Brain.Screen.printAt(200,80,"               ");
+            }
+        }
+        
+    }
+}
