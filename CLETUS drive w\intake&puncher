@@ -1,0 +1,65 @@
+#include "robot-config.h"
+/*+++++++++++++++++++++++++++++++++++++++++++++| Notes |++++++++++++++++++++++++++++++++++++++++++++++
+Tank Control 
+This program instructs your robot to use remote control values to move the robot. 
+
+Robot Configuration:
+[Smart Port]    [Name]        [Type]           [Description]       [Reversed]
+Motor Port 1    FrontLeftMotor     V5 Smart Motor    Left side motor     false
+Motor Port 10   FrontRightMotor    V5 Smart Motor    Right side motor    true
+Motor Port 3    BackLeftMotor      V5 Smart Motor    Arm motor          false
+Motor Port 8    BackRightMotor     V5 Smart Motor    Claw motor         false
+
+----------------------------------------------------------------------------------------------------*/          
+
+int main() {
+    
+   
+    
+    Brain.Screen.print("Shut the actual fuck up it took a whole day to program;
+    
+    
+   
+    while(1) {
+        
+       
+       FrontLeftMotor.spin(vex::directionType::fwd, Controller1.Axis3.value(), vex::velocityUnits::pct);
+       FrontRightMotor.spin(vex::directionType::rev, Controller1.Axis2.value(), vex::velocityUnits::pct);
+       BackLeftMotor.spin(vex::directionType::fwd, Controller1.Axis3.value(), vex::velocityUnits::pct);
+       BackRightMotor.spin(vex::directionType::rev, Controller1.Axis2.value(), vex::velocityUnits::pct);
+     
+        
+         if(Controller1.ButtonR1.pressing())
+        {
+            Intake.spin(vex::directionType::rev, 50, vex::velocityUnits::pct);
+        }
+            else if(Controller1.ButtonR2.pressing())
+             {
+                 Intake.spin(vex::directionType::fwd,  50, vex::velocityUnits::pct);
+             }
+                else
+                {
+                    Intake.stop(vex::brakeType::coast);
+     } 
+    
+     
+     if(Controller1.ButtonA.pressing())
+        {
+            Puncher.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
+        }
+                else
+                {
+                    Puncher.stop(vex::brakeType::coast);
+                } 
+    
+    }
+    
+   
+
+
+}
+
+
+     
+
+
