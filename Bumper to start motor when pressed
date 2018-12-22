@@ -1,0 +1,23 @@
+#include "robot-config.h"
+
+
+vex::brain Brain; 
+vex::motor Motor = vex::motor (vex::PORT3);
+vex::bumper Bumper = vex::bumper(Brain.ThreeWirePort.H);
+
+int main() 
+{
+    while(true)
+    {
+    if(Bumper.pressing())
+    {
+        Motor.spin(vex::directionType::fwd);
+    }
+    else
+    {
+        Motor.stop(vex::brakeType::coast);
+    }
+    }
+ 
+
+}
