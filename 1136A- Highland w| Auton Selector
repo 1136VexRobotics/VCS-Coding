@@ -1,0 +1,466 @@
+#include "robot-config.h"
+vex::competition    Competition;
+//--------------------------------------------------------
+int fwd_1 = 2;
+int fwd_2 = 1;
+int fwd_3 = 1;
+int fwd_4 = 1;
+int fwd_5 = 1;
+//--------------------------------------------------------
+int bwd_1 = -1;
+int bwd_2 = 1;
+//--------------------------------------------------------
+int turn_90 = 1;
+int turn_2 = 1;
+//--------------------------------------------------------
+int speed = 50;
+int turnspeed = 50;
+//--------------------------------------------------------
+int punchspeed = 100;
+float punchload = 3.42;
+float punchshot = 3.42;
+float punchauto = 6.84;
+//--------------------------------------------------------
+int intakespeed = 200;
+int intake_half = 1;
+
+int threshold = 60;
+//--------------------------------------------------------
+int liftspeed = 150;
+float liftup = 2.4;
+float liftp = 0.5;
+int liftdown = 0;
+//--------------------------------------------------------
+int Auton;
+//--------------------------------------------------------
+    //Top Left X Value
+    int originX = 10;
+    int originX2 = 10;
+    int originX3 = 370;
+    int originX4 = 370;
+    int width = 100;
+    
+    //Top left Y Value
+    int originY = 10;
+    int originY2 = 120;
+    int originY3 = 10;
+    int originY4 = 120;
+    int height = 100;
+    
+    
+    //Bottom Right X + Y value
+    int endX = originX + width;
+    int endY = originY + height;
+    
+    int endX2 = originX2 + width;
+    int endY2 = originY2 + height;
+    
+    int endX3 = originX3 + width;
+    int endY3 = originY3 + height;
+    
+    int endX4 = originX4 + width;
+    int endY4 = originY4 + height;
+//--------------------------------------------------------
+    
+    
+void reset()
+{
+    LeftFront.resetRotation();
+    RightFront.resetRotation();
+    LeftBack.resetRotation();
+    RightBack.resetRotation();
+}
+
+void first_leg()
+{
+    LeftFront.startRotateTo(fwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(-fwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(fwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(-fwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    if (Line.value(vex::percentUnits::pct) > threshold)
+        {
+            Intake.spin(vex::directionType::fwd,intakespeed,vex::velocityUnits::rpm);
+        }
+        else
+            {
+                Intake.stop(vex::brakeType::coast);
+            }
+    Lift1.startRotateTo(135,vex::rotationUnits::deg,50,vex::velocityUnits::pct);
+    Lift2.startRotateTo(-135,vex::rotationUnits::deg,50,vex::velocityUnits::pct);
+    while (Intake.isSpinning())
+    {}
+    reset();
+}
+
+
+
+
+
+
+void drive_fwd_1()
+{
+    LeftFront.startRotateTo(fwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(-fwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(fwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(-fwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    while (RightFront.isSpinning() || LeftFront.isSpinning())
+    {}
+    reset();
+}
+
+void drive_fwd_2()
+{
+
+    LeftFront.startRotateTo(fwd_2,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(-fwd_2,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(fwd_2,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(-fwd_2,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    while (RightFront.isSpinning() || LeftFront.isSpinning())
+    {}
+    reset();
+}
+
+void drive_fwd_3()
+{
+
+    LeftFront.startRotateTo(fwd_3,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(-fwd_3,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(fwd_3,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(-fwd_3,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    while (RightFront.isSpinning() || LeftFront.isSpinning())
+    {}
+    reset();
+}
+
+void drive_fwd_4()
+{
+
+    LeftFront.startRotateTo(fwd_4,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(-fwd_4,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(fwd_4,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(-fwd_4,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    while (RightFront.isSpinning() || LeftFront.isSpinning())
+    {}
+    reset();
+}
+
+void drive_fwd_5()
+{
+
+    LeftFront.startRotateTo(fwd_5,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(-fwd_5,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(fwd_5,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(-fwd_5,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    while (RightFront.isSpinning() || LeftFront.isSpinning())
+    {}
+    reset();
+}
+
+
+
+
+
+
+void drive_bwd_1()
+{
+
+    LeftFront.startRotateTo(bwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(-bwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(bwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(-bwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    while (RightFront.isSpinning() || LeftFront.isSpinning())
+    {}
+    reset();
+}
+
+void drive_bwd_2()
+{
+
+    LeftFront.startRotateTo(bwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(-bwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(bwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(-bwd_1,vex::rotationUnits::rev,speed,vex::velocityUnits::pct);
+    while (RightFront.isSpinning() || LeftFront.isSpinning())
+    {}
+    reset();
+}
+
+
+
+void turn_R_90()
+{
+
+    LeftFront.startRotateTo(turn_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(turn_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(turn_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(turn_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    while (RightFront.isSpinning() || LeftFront.isSpinning())
+    {}
+    reset();
+}
+void turn_L_90()
+{
+
+    LeftFront.startRotateTo(-turn_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RightFront.startRotateTo(-turn_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    LeftBack.startRotateTo(-turn_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    RightBack.startRotateTo(-turn_90,vex::rotationUnits::rev,turnspeed,vex::velocityUnits::pct);
+    while (RightFront.isSpinning() || LeftFront.isSpinning())
+    {}
+    reset();  
+}
+
+
+
+
+
+
+void lift_up()
+{
+    Lift1.startRotateTo(liftup,vex::rotationUnits::rev,liftspeed,vex::velocityUnits::rpm);
+    Lift2.startRotateTo(-liftup,vex::rotationUnits::rev,liftspeed,vex::velocityUnits::rpm);
+    while (Lift1.isSpinning())
+    {}
+}
+
+void lift_partial()
+{
+    Lift1.startRotateTo(liftp,vex::rotationUnits::rev,liftspeed,vex::velocityUnits::rpm);
+    Lift2.startRotateTo(-liftp,vex::rotationUnits::rev,liftspeed,vex::velocityUnits::rpm);
+    while (Lift1.isSpinning())
+    {} 
+}
+void lift_down()
+{
+    Lift1.startRotateTo(liftdown,vex::rotationUnits::rev,liftspeed,vex::velocityUnits::rpm);
+    Lift2.startRotateTo(liftdown,vex::rotationUnits::rev,liftspeed,vex::velocityUnits::rpm);
+    while (Lift1.isSpinning())
+    {} 
+}
+
+
+void intake_up_half()
+{
+    if (Line.value(vex::percentUnits::pct) < threshold)
+        {
+            Intake.spin(vex::directionType::fwd,intakespeed,vex::velocityUnits::rpm);
+        }
+        else
+            {
+                Intake.stop(vex::brakeType::coast);
+            }
+}
+
+
+void intake_pick()
+{
+    Intake.spin(vex::directionType::rev,intakespeed,vex::velocityUnits::rpm);
+}
+void intake_out()
+{
+    Intake.spin(vex::directionType::fwd,intakespeed,vex::velocityUnits::rpm);
+}
+
+
+
+void puncher_load()
+{
+    Puncher.startRotateTo(punchload,vex::rotationUnits::rev,punchspeed,vex::velocityUnits::pct);
+}
+void puncher_shot()
+{
+    Puncher.startRotateTo(punchshot,vex::rotationUnits::rev,punchspeed,vex::velocityUnits::pct);
+}
+
+    
+ 
+
+
+void Autonomous_1()
+    {
+        first_leg();
+    }
+
+        void Autonomous_2()
+            {
+                
+            }
+
+                void Autonomous_3()
+                    {
+                        //a
+                        //a
+                    }
+
+                        void Autonomous_4()
+                            {
+                                //a
+                                //a
+                            }
+
+
+
+void pre_auton( void ) 
+{
+    LeftFront.resetRotation();
+    RightFront.resetRotation();
+    LeftBack.resetRotation();
+    RightBack.resetRotation();
+    Lift1.resetRotation();
+    Lift2.resetRotation();
+    Puncher.resetRotation();
+    Intake.resetRotation();
+    
+    
+    
+    Brain.Screen.setFillColor(vex::color::red);
+    Brain.Screen.drawRectangle(originX, originY, width, height);
+    Brain.Screen.drawRectangle(originX2, originY2, width, height);
+    
+    
+    //2 Blue Squares
+    Brain.Screen.setFillColor(vex::color::blue);
+    Brain.Screen.drawRectangle(originX3, originY3, width, height);
+    Brain.Screen.drawRectangle(originX4, originY4, width, height);
+    
+    
+    while(true)
+    {
+        Brain.Screen.setFillColor(vex::color::black);
+        Brain.Screen.printAt(125, 200, "Battery Capacity: %d%%", Brain.Battery.capacity());
+        
+        if (Brain.Screen.pressing())
+        {
+            int X = Brain.Screen.xPosition();//X pos of press
+            int Y = Brain.Screen.yPosition();// Y pos of press
+
+                if ((X >= originX && X <= endX) && (Y >= originY && Y <= endY))
+                {
+                    Auton = 1;
+                    Brain.Screen.clearScreen();
+                    Brain.Screen.newLine();
+                    Brain.Screen.printAt(1,40,"Autonomous 1 is running");
+                    Brain.Screen.newLine();
+                    Brain.Screen.print(Auton);
+                }
+                    if ((X>= originX2 && X<= endX2) && (Y >= originY2 && Y <= endY2))
+                    {
+                        Auton = 2;
+                        Brain.Screen.clearScreen();
+                        Brain.Screen.newLine();
+                        Brain.Screen.printAt(1,40,"Autonomous 2 is running");
+                        Brain.Screen.newLine();
+                        Brain.Screen.print(Auton);
+                    }
+                        if ((X>= originX3 && X <=endX3) && (Y >= originY3 && Y<=endY3))
+                        {
+                            Auton = 3;
+                            Brain.Screen.clearScreen();
+                            Brain.Screen.newLine();
+                            Brain.Screen.printAt(1,40,"Autonomous 3 is running");
+                            Brain.Screen.newLine();
+                            Brain.Screen.print(Auton);
+                        }
+                            if ((X>= originX4 && X <=endX4) && (Y >= originY4 && Y<=endY4))
+                            {
+                                Auton = 4;
+                                Brain.Screen.clearScreen();
+                                Brain.Screen.newLine();
+                                Brain.Screen.printAt(1,40,"Autonomous 4 is running");
+                                Brain.Screen.newLine();
+                                Brain.Screen.print(Auton);
+                            }               
+                       }
+                      }
+}
+
+
+void autonomous( void ) 
+{
+    if(Auton == 1)
+    {
+        Autonomous_1();  
+    }
+            if(Auton == 2)
+            {
+                Autonomous_2();
+            }
+                    if(Auton == 3)
+                    {
+                        Autonomous_3();
+                    }
+                            if(Auton == 4)
+                            {
+                                Autonomous_4();
+                            }
+}
+
+
+
+void usercontrol( void ) 
+{
+  while (true) 
+  {   
+    LeftFront.spin(vex::directionType::fwd, Controller.Axis3.value(), vex::velocityUnits::pct);
+    RightFront.spin(vex::directionType::rev, Controller.Axis2.value(), vex::velocityUnits::pct);
+    LeftBack.spin(vex::directionType::fwd, Controller.Axis3.value(), vex::velocityUnits::pct);
+    RightBack.spin(vex::directionType::rev, Controller.Axis2.value(), vex::velocityUnits::pct);
+    
+        if(Controller.ButtonL1.pressing())
+        {
+            Puncher.spin(vex::directionType::rev ,punchspeed,vex::velocityUnits::pct);
+        }
+                else 
+                {
+                    Puncher.stop(vex::brakeType::hold);
+                }
+
+      
+        if(Controller.ButtonR2.pressing())
+        {
+            Intake.spin(vex::directionType::fwd,intakespeed,vex::velocityUnits::rpm);
+        }
+                else if(Controller.ButtonR1.pressing())
+                {
+                    Intake.spin(vex::directionType::rev,intakespeed,vex::velocityUnits::rpm);
+                }
+                        else
+                        {
+                            Intake.stop();
+                        }
+        
+      
+        if(Controller.ButtonA.pressing())
+        {
+            Lift1.spin(vex::directionType::fwd,liftspeed,vex::velocityUnits::rpm);
+            Lift2.spin(vex::directionType::rev,liftspeed,vex::velocityUnits::rpm);
+            
+        }
+                else if(Controller.ButtonX.pressing())
+                {
+                    Lift1.spin(vex::directionType::rev,liftspeed,vex::velocityUnits::rpm);
+                    Lift2.spin(vex::directionType::fwd,liftspeed,vex::velocityUnits::rpm);
+                }
+                        else
+                        {
+                            Lift1.stop(vex::brakeType::hold);
+                            Lift2.stop(vex::brakeType::hold);
+                        }
+      Bumper.pressed(Autonomous_1);
+      
+      
+    vex::task::sleep(20);
+  }
+}
+
+
+int main() 
+{
+    pre_auton();
+    Competition.autonomous( autonomous );
+    Competition.drivercontrol( usercontrol );
+    while(1) 
+    {
+      vex::task::sleep(100);
+    }    
+}
